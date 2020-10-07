@@ -6,11 +6,13 @@ const session = require('express-session');
 const flash = require('connect-flash');
 require('dotenv').config();//dotenv를 사용
 
+const pageRouter = require('./routes/page');
+
 const app = express();
 
 app.set('view engine', 'pug');
 app.set('views', path.join(__dirname,'views'));
-app.set('port', process.env.PORT || 8081);
+app.set('port', process.env.PORT || 8001);
 
 app.use(morgan('dev'));
 app.use(express.static(path.join(__dirname, 'public')));
@@ -26,7 +28,10 @@ app.use(session({
         secure : false,
     }
 }));
+
 app.use(flash());
+
+app.use('/', pageRouter);
 
 app.listen(app.get('port'), () => {//app.set 한 것을 app.get으로 가져올 수 있음
     console.log(`${app.get('port')}번 포트에서 서버 실행중입니다.`);
