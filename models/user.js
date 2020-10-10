@@ -30,7 +30,7 @@
 //     return sequelize.define;
 // };
 module.exports = (sequelize, DataTypes) => {
-    sequelize.define('user', {
+    return  sequelize.define('user', {
     email:{
     type: DataTypes.STRING(40),
     allowNull: false,
@@ -57,7 +57,7 @@ module.exports = (sequelize, DataTypes) => {
     timestamps: true,
     paranoid: true,
     })
-    return sequelize.define;
+    
     };
 
   
