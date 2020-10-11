@@ -9,6 +9,7 @@ const passport = require('passport');
 require('dotenv').config();//dotenv를 사용
 
 const pageRouter = require('./routes/page');
+const authRouter = require('./routes/auth');
 const { sequelize } = require('./models');
 const passportConfig = require('./passport'); //폴더내의 index.js 파일은 require시 이름을 생략할 수 있다.
 
@@ -40,6 +41,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.use('/', pageRouter);
+app.use('/auth', authRouter);
 
 app.listen(app.get('port'), () => {//app.set 한 것을 app.get으로 가져올 수 있음
     console.log(`${app.get('port')}번 포트에서 서버 실행중입니다.`);
